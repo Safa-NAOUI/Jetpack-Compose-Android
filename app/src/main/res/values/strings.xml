@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">JetComposeUI</string>
+
+    <string name="show_less">Show less</string>
+    <string name="show_more">Show more</string>
+    <string name="title_activity_drawermenu">drawermenu</string>
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="enter_your_mail">Email</string>
+    <string name="enter_your_password">Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot password ?</string>
+    <string name="sign_in">Sign In</string>
+</resources>
