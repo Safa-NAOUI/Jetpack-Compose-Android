@@ -1,5 +1,6 @@
 package com.test.jetcomposeui.ui.styles
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ButtonColors
@@ -18,8 +19,9 @@ class ButtonStyle {
     companion object {
         fun defaultButtonModifier(): Modifier {
             return Modifier
+                .fillMaxWidth()
                 .height(75.dp)
-                .padding(top = 30.dp, bottom = 5.dp, start = 5.dp, end = 5.dp)
+                .padding(16.dp)
         }
 
         @Composable

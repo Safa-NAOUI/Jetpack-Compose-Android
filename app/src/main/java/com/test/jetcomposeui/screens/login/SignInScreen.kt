@@ -93,6 +93,19 @@ fun SignInScreen(
                      Log.d("SignIn Screen","Sign In button has been clicked")
                 },
             )
+
+            /** Sign-Up Button  **/
+            ButtonComponent(
+                stringResource(R.string.sign_up),
+                textStyle = TextCustomStyle.textCustomStyle(),
+                onClick = {
+                    // Handle onClick action
+                    keyboardController?.hide()
+                    isKeyboardVisible = false
+
+                    Log.d("SignIn Screen", "Sign Up button has been clicked")
+                },
+            )
         }
     }
 
