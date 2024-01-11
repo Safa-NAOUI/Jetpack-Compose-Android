@@ -2,7 +2,9 @@ package com.test.jetcomposeui.screens.login
 
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -38,7 +40,6 @@ fun SignInScreen(
     var isKeyboardVisible by remember { mutableStateOf(false) }
     val keyboardController = LocalSoftwareKeyboardController.current
 
-
     ColumnComponent(
         modifier = modifier
             .fillMaxHeight()
@@ -47,7 +48,6 @@ fun SignInScreen(
             .verticalScroll(rememberScrollState()),
     ) {
 
-        /** Title  **/
         /** Title  **/
         MyTextComponent(
             stringResource(R.string.login),
@@ -90,22 +90,33 @@ fun SignInScreen(
                     keyboardController?.hide()
                     isKeyboardVisible = false
 
-                     Log.d("SignIn Screen","Sign In button has been clicked")
+                    Log.d("SignIn Screen", "Sign In button has been clicked")
                 },
             )
 
             /** Sign-Up Button  **/
-            ButtonComponent(
-                stringResource(R.string.sign_up),
-                textStyle = TextCustomStyle.textCustomStyle(),
-                onClick = {
-                    // Handle onClick action
-                    keyboardController?.hide()
-                    isKeyboardVisible = false
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                MyTextComponent(
+                    stringResource(R.string.sign_up_message),
 
-                    Log.d("SignIn Screen", "Sign Up button has been clicked")
-                },
-            )
+                    textStyle = TextCustomStyle.textWhiteCustomStyle(false)
+                )
+                MyTextComponent(
+                    stringResource(R.string.sign_up),
+                    textStyle = TextCustomStyle.textWhiteCustomStyle(true),
+                    onClick = {
+                        // Handle onClick action
+                        keyboardController?.hide()
+                        isKeyboardVisible = false
+
+                        Log.d("SignIn Screen", "Sign Up button has been clicked")
+                    },
+                )
+            }
         }
     }
 
