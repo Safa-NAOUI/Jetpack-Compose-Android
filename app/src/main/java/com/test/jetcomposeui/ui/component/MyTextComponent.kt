@@ -1,6 +1,6 @@
 package com.test.jetcomposeui.ui.component
 
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,14 +15,16 @@ import com.test.jetcomposeui.ui.theme.JetComposeUITheme
  * Created by Safa NAOUI on 24/12/2023.
  */
 @Composable
-fun MyTextComponent(title: String, textStyle: TextStyle = TextStyle.Default) {
+fun MyTextComponent(title: String, textStyle: TextStyle = TextStyle.Default,
+                    onClick: (() -> Unit)? = null) {
 
     Text(
         title,
         style = textStyle,
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 50.dp),
+             .padding(end = 16.dp)
+            .padding(bottom = 50.dp)
+            .clickable { onClick?.invoke()  },
     )
 }
 
