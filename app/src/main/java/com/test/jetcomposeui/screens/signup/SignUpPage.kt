@@ -1,9 +1,9 @@
-package com.test.jetcomposeui.screens.login
+package com.test.jetcomposeui.screens.signup
 
 import android.annotation.SuppressLint
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
@@ -16,13 +16,12 @@ import com.test.jetcomposeui.ui.theme.JetComposeUITheme
  */
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun SignInPage(navController: NavController) {
+fun SignUpPage(navController: NavController) {
     Scaffold {
-
         Surface(color = MaterialTheme.colorScheme.background) {
             ColumnComponent()
             {
-                SignInScreen(navController)
+                SignUpScreen(navController)
             }
         }
     }
@@ -33,6 +32,6 @@ fun SignInPage(navController: NavController) {
 fun DefaultPreviewSignInPage() {
     val navController = rememberNavController()
     JetComposeUITheme {
-        SignInPage(navController)
+        SignUpPage(navController)
     }
 }
