@@ -1,11 +1,14 @@
 package com.test.jetcomposeui.ui.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -13,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -39,6 +43,7 @@ fun MyTextFieldComponent(
     isPassword: Boolean? = false
 ) {
     var text by remember { mutableStateOf("") }
+    var isPasswordVisible by rememberSaveable { mutableStateOf(true) }
 
     val keyboardController = LocalSoftwareKeyboardController.current
     val keyboardOptions = remember {
@@ -48,10 +53,8 @@ fun MyTextFieldComponent(
             else KeyboardType.Text
         )
     }
-    val visualTransformation = remember {
-        if (isPassword == true) PasswordVisualTransformation()
-        else VisualTransformation.None
-    }
+
+    var visualTransformation = fnVisualTransformation(isPassword, isPasswordVisible)
 
     TextField(
         value = text,
@@ -63,7 +66,6 @@ fun MyTextFieldComponent(
         },
         keyboardOptions = keyboardOptions,
         keyboardActions = KeyboardActions(onDone = {
-            // Handle the 'Done' action here
             keyboardController?.hide()
         }),
         visualTransformation = visualTransformation,
@@ -77,9 +79,31 @@ fun MyTextFieldComponent(
                 )
             }
         },
-
-        )
+        trailingIcon = {
+            if (isPassword == true) {
+                Icon(
+                    imageVector = if (isPasswordVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .clickable {
+                            isPasswordVisible = !isPasswordVisible
+                            visualTransformation =
+                                fnVisualTransformation(isPassword, isPasswordVisible)
+                        }
+                )
+            }
+        }
+    )
 }
+
+fun fnVisualTransformation(isPassword: Boolean?, isPasswordVisible: Boolean): VisualTransformation {
+    return if (isPassword == true && isPasswordVisible) {
+        PasswordVisualTransformation()
+    } else {
+        VisualTransformation.None
+    }
+}
+
 
 @Preview()
 @Composable
