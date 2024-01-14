@@ -10,7 +10,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Mail
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.test.jetcomposeui.R
 import com.test.jetcomposeui.ui.component.ButtonComponent
 import com.test.jetcomposeui.ui.component.ColumnComponent
@@ -66,7 +67,7 @@ fun SignInScreen(
             /** Email TextField   **/
             MyTextFieldComponent(
                 stringResource(R.string.enter_your_mail),
-                Icons.Default.Person,
+                Icons.Default.Mail,
                 textStyle = TextCustomStyle.textCustomStyle()
             )
 
@@ -124,7 +125,8 @@ fun SignInScreen(
 @Preview()
 @Composable
 fun DefaultPreviewSignInScreen() {
+    val navController = rememberNavController()
     JetComposeUITheme {
-        // SignInScreen()
+        SignInScreen(navController)
     }
 }
