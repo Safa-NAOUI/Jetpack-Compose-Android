@@ -42,6 +42,7 @@ fun DefaultPreview1() {
     JetComposeUITheme {
         ButtonComponent(stringResource(R.string.sign_in))
         {
+
             /****** Handle onClick action ***/
             Log.d("LoginActivity", " onclick button ")
         }
